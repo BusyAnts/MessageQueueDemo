@@ -1,0 +1,2 @@
+# MessageQueueDemo
+RabbitMQ使用
