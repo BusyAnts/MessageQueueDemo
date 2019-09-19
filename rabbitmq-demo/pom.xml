@@ -21,18 +21,11 @@
         <java.version>1.8</java.version>
     </properties>
 
-<!--    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring‐boot‐starter‐amqp</artifactId>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>-->
-
     <modules>
         <module>rabbitmq-producer-test</module>
         <module>rabbitmq-consumer-test</module>
+        <module>springboot-rabbitmq-consumer</module>
+        <module>springboot-rabbitmq-producer</module>
     </modules>
 
     <build>
