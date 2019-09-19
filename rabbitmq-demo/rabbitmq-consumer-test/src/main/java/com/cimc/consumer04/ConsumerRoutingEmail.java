@@ -1,4 +1,4 @@
-package com.cimc.consumer03;
+package com.cimc.consumer04;
 
 import com.rabbitmq.client.*;
 
@@ -6,14 +6,14 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 /**
- * 短信消费者
+ * 邮件消费者
  *
  * @author chenz
  * @create 2019-09-18 19:33
  */
-public class ConsumerSubscribeSms {
-    private static final String QUEUE_INFO_SMS = "queue_info_sms";
-    private static final String EXCHANGE_FANOUT_INFO = "exchange_fanout_info";
+public class ConsumerRoutingEmail {
+    private static final String QUEUE_INFO_EMAIL = "queue_info_email";
+    private static final String EXCHANGE_DIRECT_INFO = "exchange_direct_info";
 
     public static void main(String[] args) throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
@@ -23,11 +23,11 @@ public class ConsumerSubscribeSms {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
         //声明交换机
-        channel.exchangeDeclare(EXCHANGE_FANOUT_INFO, BuiltinExchangeType.FANOUT);
+        channel.exchangeDeclare(EXCHANGE_DIRECT_INFO, BuiltinExchangeType.DIRECT);
         //声明队列
-        channel.queueDeclare(QUEUE_INFO_SMS, true, false, false, null);
+        channel.queueDeclare(QUEUE_INFO_EMAIL, true, false, false, null);
         //交换机和队列绑定
-        //channel.queueBind(QUEUE_INFO_SMS, EXCHANGE_FANOUT_INFO, "");
+        //channel.queueBind(QUEUE_INFO_EMAIL, EXCHANGE_DIRECT_INFO, "email");
         //定义消费方法
         DefaultConsumer consumer = new DefaultConsumer(channel) {
             /**
@@ -62,6 +62,6 @@ public class ConsumerSubscribeSms {
          为false则需要手动回复
          * 3、消费消息的方法，消费者接收到消息后调用此方法
          */
-        channel.basicConsume(QUEUE_INFO_SMS, true, consumer);
+        channel.basicConsume(QUEUE_INFO_EMAIL, true, consumer);
     }
 }
