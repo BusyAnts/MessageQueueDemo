@@ -12,7 +12,7 @@ import java.util.concurrent.TimeoutException;
  * @create 2019-09-18 19:33
  */
 public class ConsumerTopicSms {
-    private static final String QUEUE_INFO_SMS = "queue_info_ems";
+    private static final String QUEUE_INFO_SMS = "queue_info_sms";
     private static final String EXCHANGE_TOPIC_INFO = "exchange_topic_info";
 
     public static void main(String[] args) throws IOException, TimeoutException {
